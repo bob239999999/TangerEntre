@@ -17,26 +17,28 @@ He creado la table :
     Contiene la lista de las tareas del proyecto junto a su descripcion. 
 
 
+Para la adicion de la Tarea a un Proyecto lo que se hace es que : 
+Se va ha acceder la tarea y cambiar su identificante de Proyecto. 
+
+Que pasa si una tarea pertenece a dos proyecto ?
+Se va ha tener la tarea la referencia de los dos proyetos en un array. 
+
+Para cambiar datos de la base de datos sin cambiar todo se va ah usar el methodo Patch. 
 
 Initialisation de project : 
 cd entreprise 
 npm start 
 
 Test a realiser utilisant postman :
-
 Authentification: 
 POST /auth/signup 
 POST /auth/login
 
-
 User interaction : 
 GET user/me
-
 
 Project Interaction : 
 GET /projects 
 POST /projects 
 POST  /projects/:id/invite 
-Task : 
-
 
