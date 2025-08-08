@@ -1,0 +1,42 @@
+Readme : 
+
+Para la creacion del proyectop he creado cada uno de las tablas como componentes. 
+He creado la table : 
+--> Auth :
+    Trata la interaccion de autentificacion logearse, deslogearse y generar el token de session para cada usuario.
+    --> Pipeline para la gestion de la vida de los diferentes usuarios dentro de la red. 
+
+--> Membership : 
+    Que trata las relaciones entre los user y los proyectos.
+    Un usuario esta asignado a un proyecto pero un proyecto puede estar realcionado con varios usuarios de la empresa. 
+
+--> Task : 
+    Trata las tareas que pertecen a cada proyecto en la red.  
+
+--> Projecto : 
+    Contiene la lista de las tareas del proyecto junto a su descripcion. 
+
+
+
+Initialisation de project : 
+cd entreprise 
+npm start 
+
+Test a realiser utilisant postman :
+
+Authentification: 
+POST /auth/signup 
+POST /auth/login
+
+
+User interaction : 
+GET user/me
+
+
+Project Interaction : 
+GET /projects 
+POST /projects 
+POST  /projects/:id/invite 
+Task : 
+
+
