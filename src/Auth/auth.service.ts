@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
-import { UsersService } from 'src/User/user.service';
+import { UsersService } from '../User/user.service';
 
 @Injectable()
 export class AuthService {
@@ -17,6 +17,7 @@ export class AuthService {
     }
 
     async login(email: string, password: string) {
+
         const user = await this.usersService.findByEmail(email);
         if (!user) return { message: 'User not found' };
 
