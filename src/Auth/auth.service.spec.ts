@@ -48,14 +48,20 @@ describe('AuthService', () => {
     });
 
     it('should return invalid password if password is incorrect', async () => {
-      (usersService.findByEmail as jest.Mock).mockResolvedValue({ id: 1, email: 'test@example.com', password: 'hashed' });
+      (usersService.findByEmail as jest.Mock).mockResolvedValue({
+        id: 1, email: 'test@example.com', password: 'hashed'
+      });
       jest.spyOn(require('bcrypt'), 'compare').mockResolvedValue(false);
       const result = await service.login('test@example.com', 'wrongpassword');
-      expect(result).toEqual({ message: 'Invalid password' });
+      expect(result).toEqual({
+        message: 'Invalid password'
+      });
     });
 
     it('should return access_token if credentials are valid', async () => {
-      (usersService.findByEmail as jest.Mock).mockResolvedValue({ id: 1, email: 'test@example.com', password: 'hashed' });
+      (usersService.findByEmail as jest.Mock).mockResolvedValue({
+        id: 1, email: 'test@example.com', password: 'hashed'
+      });
       jest.spyOn(require('bcrypt'), 'compare').mockResolvedValue(true);
       const result = await service.login('test@example.com', 'password');
       expect(result).toEqual({ access_token: 'fake-jwt-token' });

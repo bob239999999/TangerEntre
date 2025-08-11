@@ -6,7 +6,7 @@ import { TaskSchema } from './task.schema';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: 'Task', schema: TaskSchema }]),  // Register Task schema with Mongoose
+    MongooseModule.forFeature([{ name: 'Task', schema: TaskSchema }]),
   ],
   providers: [TaskService],
   controllers: [TaskController],

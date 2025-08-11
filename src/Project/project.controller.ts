@@ -31,10 +31,11 @@ export class ProjectController {
         return this.projectService.addTaskToProject(projectId, taskId);
     }
 
-    @Get(':id/tasks')
+
+    @Get(':id/tasks/:userId')
     async getProjectTask(
         @Param('id') projectId: string,
-        @Body('userId') userId: string,
+        @Param('userId') userId: string,
     ): Promise<Task[]> {
         const membership = await this.projectService.getMembership(userId);
         if (!membership || membership.projectId.toString() !== projectId) {

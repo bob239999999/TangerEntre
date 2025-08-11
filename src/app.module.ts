@@ -7,9 +7,24 @@ import { TaskModule } from './Task/task.module';
 import { ProjectModule } from './Project/project.module';
 import { MembershipModule } from './Membership/membership.module';
 import { AuthModule } from './Auth/auth.module';
+import { SongModule } from './Messaging/Song/song.module';
+
+import { ConfigModule, ConfigService } from '@nestjs/config';
+
 
 @Module({
-  imports: [MongooseModule.forRoot('mongodb://localhost:27017/project'), UserModule, TaskModule, ProjectModule, MembershipModule, AuthModule],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    MongooseModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        uri: configService.get<string>('MONGODB_URI'),
+      }),
+    }),
+
+    UserModule, TaskModule, ProjectModule, MembershipModule, AuthModule, SongModule],
   controllers: [AppController],
   providers: [AppService],
 })
