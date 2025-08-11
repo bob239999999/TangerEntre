@@ -18,19 +18,28 @@ export class ProjectController {
         return this.projectService.assignUserToProject(projectId, userId, role);
     }
 
-
     @Post(':id/tasks')
     async addTaskToProject(
         @Param('id') projectId: string,
         @Body('taskId') taskId: string,
+        @Body('userId') userId: string,
     ): Promise<Task | null> {
+        const membership = await this.projectService.getMembership(userId);
+        if (!membership || membership.role !== 'Contribuidor') {
+            throw new Error('Only a Contribuitor can add tasks to the project.');
+        }
         return this.projectService.addTaskToProject(projectId, taskId);
     }
 
     @Get(':id/tasks')
     async getProjectTask(
         @Param('id') projectId: string,
+        @Body('userId') userId: string,
     ): Promise<Task[]> {
+        const membership = await this.projectService.getMembership(userId);
+        if (!membership || membership.projectId.toString() !== projectId) {
+            throw new Error('Only members of this project can retrieve its tasks.');
+        }
         return this.projectService.getTasksProject(projectId);
     }
 
@@ -57,10 +66,17 @@ export class ProjectController {
     ): Promise<Project | null> {
         return this.projectService.update(id, updateProjectDto);
     }
-
     @Delete(':id')
-    async deleteProject(@Param('id') id: string): Promise<void> {
-        return this.projectService.remove(id);
+    async deleteProject(
+        @Param('id') projectId: string,
+        @Body('userId') userId: string
+    ): Promise<void> {
+
+        const membership = await this.projectService.getMembership(userId);
+        if (!membership || membership.role !== 'Owner') {
+            throw new Error('Only the Owner can delete the project.');
+        }
+        return this.projectService.remove(projectId);
     }
 
 }

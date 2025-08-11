@@ -95,4 +95,8 @@ export class ProjectService {
         return this.taskModel.find({ projectId: projectId }).exec();
     }
 
+    async getMembership(userId: string): Promise<Membership | null> {
+        return await this.membershipModel.findOne({ userId }).exec();
+    }
+
 }

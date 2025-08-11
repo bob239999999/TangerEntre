@@ -12,9 +12,9 @@ export class CreateTaskDto {
     @IsEnum(['TODO', 'DOING', 'DONE'])
     status: 'TODO' | 'DOING' | 'DONE';
 
-    @IsOptional()
     @IsInt()
-    projectId?: number;
+    @IsNotEmpty()
+    projectId: number;
 
     @IsOptional()
     assignedTo?: string;
@@ -34,7 +34,7 @@ export class UpdateTaskDto {
     @IsEnum(['TODO', 'DOING', 'DONE'])
     status?: 'TODO' | 'DOING' | 'DONE';
 
-    @IsOptional()
+    @IsNotEmpty()
     @IsInt()
     projectId?: number;
 
