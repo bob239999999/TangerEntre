@@ -26,7 +26,7 @@ npm run start:dev
 
 ## Exécution des tests unitaires
 
-Pour lancer tous les tests unitaires du projet :
+Pour lancer tous les tests unitaires du projet, ces mieux de lances des tests d'un composant specifique :
 
 ```bash
 npm test
