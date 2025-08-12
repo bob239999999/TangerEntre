@@ -136,7 +136,7 @@ Cela va créer 3 propriétaires, 17 contributeurs, 30 projets, 60 tâches et les
 # POSTAN COMPROBACION 
 
 Auth :
-## POST /auth/signup
+### POST /auth/signup
 http://localhost:3000/auth/signup
 
 {
@@ -146,7 +146,7 @@ http://localhost:3000/auth/signup
 }
 
 
-## POST /auth/login
+### POST /auth/login
 http://localhost:3000/auth/login
 
 {
@@ -163,7 +163,7 @@ Response  :
 The information stored here is related to : 
 
 
-## GET /auth/profile
+### GET /auth/profile
 
 Authorization: Bearer 
 
@@ -179,7 +179,7 @@ Response :
 Contain playload :  userId and email.
 
 Users :
-## GET /users/me
+### GET /users/me
 
 http://localhost:3000/users/me
 
@@ -199,7 +199,7 @@ Response :
 
 Projects :
 
-## GET /projects
+### GET /projects
 http://localhost:3000/project
 
 Response : 
@@ -214,7 +214,7 @@ Response :
     "__v": 0
 }
 
-## POST /projects
+### POST /projects
 http://localhost:3000/project
 
 Send ; 
@@ -236,7 +236,7 @@ Response :
 }
 
 
-## POST /projects/:id/invite
+### POST /projects/:id/invite
 
 Create a new user : 
 
@@ -279,7 +279,7 @@ RESPONSE
 
 
 
-## DELETE /projects/:id
+### DELETE /projects/:id
 http://localhost:3000/projects/689a0a9d89f1cc8e664de0a7
 
 
@@ -292,7 +292,7 @@ Ant it is deleted.
 
 
 
-## POST /projects/
+### POST /projects/
 
 http://localhost:3000/project/ 689a100189f1cc8e664de0b8/tasks
 
@@ -338,7 +338,7 @@ Response :
     "projectId": "689a100189f1cc8e664de0b8"
 }
 
-## GET /projects/:projectId/tasks
+### GET /projects/:projectId/tasks
 
 http://localhost:3000/project/689a100189f1cc8e664de0b8/tasks
 
@@ -355,7 +355,7 @@ Response :
     "__v": 0
 }
 
-## PATCH /tasks/:id
+### PATCH /tasks/:id
 
 http://localhost:3000/task/689a1829dec04c861ae9eac8
 
@@ -364,17 +364,17 @@ http://localhost:3000/task/689a1829dec04c861ae9eac8
   "description": "Waaaaaaaaaaaaaaaaa"
 }
 
-## DELETE /tasks/:id
+### DELETE /tasks/:id
 
 http://localhost:3000/task/689a1829dec04c861ae9eac8
 
 
 # PAGINATION  
 
-##  GET  project/:projectId/tasks?page=(pagenumber)&(pagelimit=2
+###  GET  project/:projectId/tasks?page=(pagenumber)&(pagelimit=2
 
 GET http://localhost:3000/project/689a1e1392e95a6f2c17b28e/tasks?page=1&limit=2
 
-##  GET  project?page=(pagenumber)&(pagelimit)
+###  GET  project?page=(pagenumber)&(pagelimit)
 
 GET http://localhost:3000/project?page=1&limit=3
