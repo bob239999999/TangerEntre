@@ -293,9 +293,8 @@ Response :
 
 ## GET /projects/:projectId/tasks
 
-http://localhost:3000/project/689a100189f1cc8e664de0b8/tasks
+GET http://localhost:3000/project/689a100189f1cc8e664de0b8/tasks
 
-POST http://localhost:3000/project/689a100189f1cc8e664de0b8
 
 Response : 
 {
