@@ -133,7 +133,7 @@ Cela va créer 3 propriétaires, 17 contributeurs, 30 projets, 60 tâches et les
 - Les tests utilisent des mocks pour les dépendances Mongoose.
 
 
-# POSTAN COMPROBACION 
+# SWAGGER TEST 
 
 Auth :
 ### POST /auth/signup
