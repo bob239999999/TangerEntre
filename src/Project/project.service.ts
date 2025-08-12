@@ -6,6 +6,9 @@ import { TaskModule } from 'src/Task/task.module';
 import { Task } from 'src/Task/task.schema';
 import { Membership } from 'src/Membership/membership.schema';
 
+import { PaginationDto } from './pagination.dto';
+
+
 @Injectable()
 export class ProjectService {
 
@@ -97,6 +100,39 @@ export class ProjectService {
 
     async getMembership(userId: string): Promise<Membership | null> {
         return await this.membershipModel.findOne({ userId }).exec();
+    }
+
+
+    async getAllProduct(paginationDto: PaginationDto) {
+        const { limit = 10, offset = 0 } = paginationDto;
+
+        const tasks = await this.projectModel.find()
+            .skip(offset)
+            .limit(limit)
+            .exec();
+
+        const total = await this.projectModel.countDocuments().exec();
+
+        return {
+            data: tasks,
+            count: total,
+        };
+    }
+
+    async getAllTask(paginationDto: PaginationDto, projectId: string) {
+        const { limit = 10, offset = 0 } = paginationDto;
+
+        const tasks = await this.taskModel.find()
+            .skip(offset)
+            .limit(limit)
+            .exec();
+
+        const total = await this.taskModel.countDocuments().exec();
+
+        return {
+            data: tasks,
+            count: total,
+        };
     }
 
 }

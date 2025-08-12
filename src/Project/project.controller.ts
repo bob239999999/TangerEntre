@@ -1,9 +1,11 @@
-import { Controller, Post, Body, Get, Param, Put, Delete } from '@nestjs/common';
+import { Controller, Post, Body, Query, Get, Param, Put, Delete } from '@nestjs/common';
 import { ProjectService } from 'src/Project/project.service';
 import { CreateProjectDto } from './project-task.dto';
 import { Project } from './project.schema';
 import { Membership } from 'src/Membership/membership.schema';
 import { Task } from 'src/Task/task.schema';
+import { PaginationDto } from './pagination.dto';
+
 @Controller('project')
 export class ProjectController {
 
@@ -44,6 +46,12 @@ export class ProjectController {
         return this.projectService.getTasksProject(projectId);
     }
 
+    @Get(':id/tasks')
+    async getAllTaskProjet(@Query() paginationDto: PaginationDto,
+        @Param('id') projectId: string,
+    ) {
+        return this.projectService.getAllTask(paginationDto, projectId);
+    }
 
     @Post()
     async createProject(@Body() createProjectDto: CreateProjectDto): Promise<Project> {
@@ -51,8 +59,8 @@ export class ProjectController {
     }
 
     @Get()
-    async getAllProject(): Promise<Project[]> {
-        return this.projectService.findAll();
+    async getAllProject(@Query() paginationDto: PaginationDto) {
+        return this.projectService.getAllProduct(paginationDto);
     }
 
     @Get(':id')

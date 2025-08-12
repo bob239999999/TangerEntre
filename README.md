@@ -74,7 +74,7 @@ services:
 Pour démarrer MongoDB :
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 La base de données sera accessible sur `mongodb://root:example@localhost:27017`.
@@ -84,13 +84,13 @@ La base de données sera accessible sur `mongodb://root:example@localhost:27017`
 Pour démarrer MongoDB et Mongo Express :
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 Pour vérifier les logs du service MongoDB :
 
 ```bash
-docker-compose logs mongodb
+docker compose logs mongodb
 ```
 
 Pour accéder au shell MongoDB dans le conteneur :
@@ -101,6 +101,32 @@ docker exec -it entreprise_mongodb mongosh -u admin -p password123
 
 Mongo Express sera accessible sur : [http://localhost:8081](http://localhost:8081)
 
+## Initialisation de la base de données avec des données de test
+
+Pour insérer automatiquement les utilisateurs, projets, tâches et memberships lors du démarrage de MongoDB :
+
+1. Vérifiez que le fichier `mongo-init/init-data.js` est présent dans le dossier du projet.
+2. Assurez-vous que le dossier `mongo-init` est bien monté dans le service MongoDB via le `docker-compose.yml` :
+
+   ```yaml
+   volumes:
+     - ./mongo-init:/docker-entrypoint-initdb.d
+   ```
+
+3. Démarrez MongoDB avec Docker Compose :
+
+   ```bash
+   docker compose up -d
+   ```
+
+4. Pour exécuter manuellement le script si besoin :
+
+   ```bash
+   docker exec -it entreprise_mongodb mongosh -u admin -p password123 --authenticationDatabase admin /docker-entrypoint-initdb.d/init-data.js
+   ```
+
+Cela va créer 3 propriétaires, 17 contributeurs, 30 projets, 60 tâches et les memberships associés dans la base `entreprise`.
+
 ## Notes
 
 - Vérifiez que la configuration Jest (`jest.config.ts`) est bien présente à la racine du projet.
@@ -110,7 +136,7 @@ Mongo Express sera accessible sur : [http://localhost:8081](http://localhost:80
 ## POSTAN COMPROBACION 
 
 Auth :
-## POST /auth/signup
+# POST /auth/signup
 http://localhost:3000/auth/signup
 
 {
@@ -120,7 +146,7 @@ http://localhost:3000/auth/signup
 }
 
 
-## POST /auth/login
+# POST /auth/login
 http://localhost:3000/auth/login
 
 {
@@ -137,7 +163,7 @@ Response  :
 The information stored here is related to : 
 
 
-## GET /auth/profile
+# GET /auth/profile
 
 Authorization: Bearer 
 
@@ -157,6 +183,11 @@ Users :
 
 http://localhost:3000/users/me
 
+Authorization: Bearer 
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODlhMDdiODg5ZjFjYzhlNjY0ZGUwYTIiLCJlbWFpbCI6ImFobWVkQGdtYWlsLmNvbSIsImlhdCI6MTc1NDkyNTA3MSwiZXhwIjoxNzU0OTI4NjcxfQ.0eR_Iio9iIk7xKvlrTARTGSgUo00bsnuXIAu-b7ZklA
+
+
 Response : 
 {
     "_id": "689a07b889f1cc8e664de0a2",
@@ -168,7 +199,7 @@ Response :
 
 Projects :
 
-## GET /projects
+# GET /projects
 http://localhost:3000/project
 
 Response : 
@@ -183,7 +214,7 @@ Response :
     "__v": 0
 }
 
-## POST /projects
+# POST /projects
 http://localhost:3000/project
 
 Send ; 
@@ -205,7 +236,7 @@ Response :
 }
 
 
-## POST /projects/:id/invite
+# POST /projects/:id/invite
 
 Create a new user : 
 
@@ -248,7 +279,7 @@ RESPONSE
 
 
 
-## DELETE /projects/:id
+# DELETE /projects/:id
 http://localhost:3000/projects/689a0a9d89f1cc8e664de0a7
 
 
@@ -261,7 +292,7 @@ Ant it is deleted.
 
 
 
-## POST /projects/
+# POST /projects/
 
 http://localhost:3000/project/ 689a100189f1cc8e664de0b8/tasks
 
@@ -307,9 +338,7 @@ Response :
     "projectId": "689a100189f1cc8e664de0b8"
 }
 
-
-
-## GET /projects/:projectId/tasks
+# GET /projects/:projectId/tasks
 
 http://localhost:3000/project/689a100189f1cc8e664de0b8/tasks
 
@@ -326,7 +355,7 @@ Response :
     "__v": 0
 }
 
-## PATCH /tasks/:id
+# PATCH /tasks/:id
 
 http://localhost:3000/task/689a1829dec04c861ae9eac8
 
@@ -335,7 +364,17 @@ http://localhost:3000/task/689a1829dec04c861ae9eac8
   "description": "Waaaaaaaaaaaaaaaaa"
 }
 
-## DELETE /tasks/:id
+# DELETE /tasks/:id
 
 http://localhost:3000/task/689a1829dec04c861ae9eac8
 
+
+### PAGINATION  
+
+#  GET  project/:projectId/tasks?page=(pagenumber)&(pagelimit=2
+
+GET http://localhost:3000/project/689a1e1392e95a6f2c17b28e/tasks?page=1&limit=2
+
+#  GET  project?page=(pagenumber)&(pagelimit)
+
+GET http://localhost:3000/project?page=1&limit=3
