@@ -135,6 +135,10 @@ Users :
 
 http://localhost:3000/users/me
 
+Authorization: Bearer 
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODlhMDdiODg5ZjFjYzhlNjY0ZGUwYTIiLCJlbWFpbCI6ImFobWVkQGdtYWlsLmNvbSIsImlhdCI6MTc1NDkyNTA3MSwiZXhwIjoxNzU0OTI4NjcxfQ.0eR_Iio9iIk7xKvlrTARTGSgUo00bsnuXIAu-b7ZklA
+
 Response : 
 {
     "_id": "689a07b889f1cc8e664de0a2",
