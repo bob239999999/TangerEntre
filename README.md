@@ -79,6 +79,28 @@ docker-compose up -d
 
 La base de données sera accessible sur `mongodb://root:example@localhost:27017`.
 
+## Exécution de MongoDB et Mongo Express avec Docker Compose
+
+Pour démarrer MongoDB et Mongo Express :
+
+```bash
+docker-compose up -d
+```
+
+Pour vérifier les logs du service MongoDB :
+
+```bash
+docker-compose logs mongodb
+```
+
+Pour accéder au shell MongoDB dans le conteneur :
+
+```bash
+docker exec -it entreprise_mongodb mongosh -u admin -p password123
+```
+
+Mongo Express sera accessible sur : [http://localhost:8081](http://localhost:8081)
+
 ## Notes
 
 - Vérifiez que la configuration Jest (`jest.config.ts`) est bien présente à la racine du projet.
@@ -135,13 +157,6 @@ Users :
 
 http://localhost:3000/users/me
 
-<<<<<<< HEAD
-=======
-Authorization: Bearer 
-
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODlhMDdiODg5ZjFjYzhlNjY0ZGUwYTIiLCJlbWFpbCI6ImFobWVkQGdtYWlsLmNvbSIsImlhdCI6MTc1NDkyNTA3MSwiZXhwIjoxNzU0OTI4NjcxfQ.0eR_Iio9iIk7xKvlrTARTGSgUo00bsnuXIAu-b7ZklA
-
->>>>>>> d84ee66267ef97fe8799b9a7ae052abd8de6ebe7
 Response : 
 {
     "_id": "689a07b889f1cc8e664de0a2",
@@ -296,14 +311,9 @@ Response :
 
 ## GET /projects/:projectId/tasks
 
-<<<<<<< HEAD
 http://localhost:3000/project/689a100189f1cc8e664de0b8/tasks
 
 POST http://localhost:3000/project/689a100189f1cc8e664de0b8
-=======
-GET http://localhost:3000/project/689a100189f1cc8e664de0b8/tasks
-
->>>>>>> d84ee66267ef97fe8799b9a7ae052abd8de6ebe7
 
 Response : 
 {
