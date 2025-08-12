@@ -26,7 +26,7 @@ npm run start:dev
 
 ## Exécution des tests unitaires
 
-Pour lancer tous les tests unitaires du projet, ces mieux de lances des tests d'un composant specifique :
+Pour lancer tous les tests unitaires du projet :
 
 ```bash
 npm test
@@ -135,6 +135,13 @@ Users :
 
 http://localhost:3000/users/me
 
+<<<<<<< HEAD
+=======
+Authorization: Bearer 
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODlhMDdiODg5ZjFjYzhlNjY0ZGUwYTIiLCJlbWFpbCI6ImFobWVkQGdtYWlsLmNvbSIsImlhdCI6MTc1NDkyNTA3MSwiZXhwIjoxNzU0OTI4NjcxfQ.0eR_Iio9iIk7xKvlrTARTGSgUo00bsnuXIAu-b7ZklA
+
+>>>>>>> d84ee66267ef97fe8799b9a7ae052abd8de6ebe7
 Response : 
 {
     "_id": "689a07b889f1cc8e664de0a2",
@@ -289,9 +296,14 @@ Response :
 
 ## GET /projects/:projectId/tasks
 
+<<<<<<< HEAD
 http://localhost:3000/project/689a100189f1cc8e664de0b8/tasks
 
 POST http://localhost:3000/project/689a100189f1cc8e664de0b8
+=======
+GET http://localhost:3000/project/689a100189f1cc8e664de0b8/tasks
+
+>>>>>>> d84ee66267ef97fe8799b9a7ae052abd8de6ebe7
 
 Response : 
 {
