@@ -132,6 +132,13 @@ Cela va créer 3 propriétaires, 17 contributeurs, 30 projets, 60 tâches et les
 - Vérifiez que la configuration Jest (`jest.config.ts`) est bien présente à la racine du projet.
 - Les tests utilisent des mocks pour les dépendances Mongoose.
 
+## Documentation API avec Swagger
+
+L’API est entièrement documentée grâce à Swagger.  
+Après avoir démarré le projet, accédez à la documentation interactive :
+
+- **URL Swagger UI :**  
+  [http://localhost:3000/api](http://localhost:3000/api)
 
 # SWAGGER TEST 
 
