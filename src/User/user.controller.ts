@@ -33,18 +33,21 @@ export class UserController {
         const { name, email, password } = createUserDto;
         return this.usersService.createUser(name, email, password);
     }
+
     @Get()
     @ApiOperation({ summary: 'Get all users' })
     @ApiResponse({ status: 200, description: 'List of users', type: [CreateUserDto] })
     async getAllUsers(): Promise<User[]> {
         return this.usersService.findAll();
     }
+
     @Get(':id')
     @ApiParam({
         name: 'id',
         description: 'The ID of the user',
         example: '64f8a1c2e7d3b4a1f0d5c9e7'
     })
+
     @ApiOperation({ summary: 'Get a user by ID' })
     @ApiResponse({ status: 200, description: 'User found', type: CreateUserDto })
     @ApiResponse({ status: 404, description: 'User not found' })
@@ -74,11 +77,9 @@ export class UserController {
     async deleteUser(@Param('id') id: string): Promise<{ message: string }> {
 
         const deleted = await this.usersService.remove(id);
-
         if (!deleted) {
             throw new NotFoundException(`User with ID ${id} not found`);
         }
-
         return { message: `User with ID ${id} successfully deleted` };
     }
 

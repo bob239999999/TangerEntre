@@ -35,12 +35,8 @@ export class UsersService {
     }
 
     async remove(id: string): Promise<boolean> {
-        const user = await this.userModel.findOne({ where: { id } });
-        if (!user) {
-            return false;
-        }
-        await this.userModel.findByIdAndDelete(id);
-        return true;
+        const deletedUser = await this.userModel.findByIdAndDelete(id);
+        return !!deletedUser;
     }
 
 }
