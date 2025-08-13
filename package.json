@@ -21,7 +21,8 @@
     "docker:up": "docker compose up -d",
     "docker:down": "docker compose down",
     "docker:logs": "docker compose logs -f",
-    "docker:reset": "docker compose down -v && docker compose up -d"
+    "docker:reset": "docker compose down -v && docker compose up -d",
+    "data:load": "ts-node scripts/seed.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.1.6",

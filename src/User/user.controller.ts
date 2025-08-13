@@ -3,7 +3,7 @@ import { UsersService } from './user.service';
 import { User } from './user.schema';
 import { CreateUserDto } from './create-user.dto'; // Import du DTO
 import { UpdateUserDto } from './update-user.dto'; // Import du DTO pour la mise à jour
-import { JwtAuthGuard } from 'src/Auth/jwt.guard'; // Import du guard JWT
+import { JwtAuthGuard } from '../Auth/jwt.guard'; // Import du guard JWT
 import { ApiBearerAuth, ApiParam, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 
@@ -72,6 +72,7 @@ export class UserController {
     @ApiResponse({ status: 200, description: 'User deleted' })
     @ApiResponse({ status: 404, description: 'User not found' })
     async deleteUser(@Param('id') id: string): Promise<{ message: string }> {
+
         const deleted = await this.usersService.remove(id);
 
         if (!deleted) {

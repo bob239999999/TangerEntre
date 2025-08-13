@@ -1,13 +1,13 @@
 import { Controller, Post, Body, Query, Get, Param, Put, Delete, ForbiddenException } from '@nestjs/common';
-import { ProjectService } from 'src/Project/project.service';
+import { ProjectService } from './project.service';
 import { CreateProjectDto } from './project-task.dto';
 import { CreateTaskDto } from '../Task/create-task.dto';
 import { Project } from './project.schema';
-import { Membership } from 'src/Membership/membership.schema';
-import { Task } from 'src/Task/task.schema';
+import { Membership } from '../Membership/membership.schema';
+import { Task } from '../Task/task.schema';
 import { PaginationDto } from './pagination.dto';
 import { ApiBearerAuth, ApiQuery, ApiBody, ApiParam, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { MembershipDto } from 'src/Membership/membership.dto';
+import { MembershipDto } from '../Membership/membership.dto';
 import { UpdateProjectDto } from './project-task.dto';
 
 @ApiTags('Projects')
